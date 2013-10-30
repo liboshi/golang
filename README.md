@@ -1,4 +1,4 @@
-golang
+Go Lang
 ======
 
-GO Lang practise
+Go Lang practise
