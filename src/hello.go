@@ -5,6 +5,7 @@ import (
 	"math"
 	"runtime"
 	"time"
+	"os"
 )
 
 var i, j int = 1, 2
@@ -12,6 +13,15 @@ var c, python, ruby bool = true, true, true
 type Person struct {
 	Name string
 	Age int
+}
+
+type Writer interface {
+	Write(b []byte) (n int, err error)
+}
+
+type MyError struct {
+	When time.Time
+	What string
 }
 
 func add(x int, y int) int {
@@ -26,6 +36,18 @@ func split(sum int) (x, y int) {
 	x = sum * 4 / 9
 	y = sum - x
 	return
+}
+
+// Errors
+func (e *MyError) Error() string {
+	return fmt.Sprintf("at %v, %s", e.When, e.What)
+}
+
+func run() error {
+	return &MyError{
+		time.Now(),
+		"It doesn't work.",
+	}
 }
 
 func main() {
@@ -93,9 +115,24 @@ func main() {
 	p1 := &p
 	p1.Age = 27
 	fmt.Println(p)
+	// Array
 	var m [2]string
 	m[0] = "Hello"
 	m[1] = "world"
 	fmt.Println(m[0], m[1])
+	// Slice
+	s := []int{1, 2, 3, 4, 5, 6, 7}
+	fmt.Println("s ==", s)
+	for i := 0; i < len(s); i++ {
+		fmt.Printf("s[%d] == %d ", i, s[i])
+	}
+	// Interface
+	var w Writer
+	w = os.Stdout
+	fmt.Fprintf(w, "\nHello world.\n")
+	// Errors
+	if err := run(); err != nil {
+		fmt.Println(err)
+	}
 }
 
