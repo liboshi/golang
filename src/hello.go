@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"math"
-	"runtime"
+//	"math"
+//	"runtime"
 	"time"
-	"os"
+//	"os"
+	"net/http"
 )
 
 var i, j int = 1, 2
@@ -43,6 +44,12 @@ func (e *MyError) Error() string {
 	return fmt.Sprintf("at %v, %s", e.When, e.What)
 }
 
+type ErrNegativeSqrt float64
+
+func (e ErrNegativeSqrt) Error() string {
+	return fmt.Sprintf("Cannot sqrt negative number: %f", e)
+}
+
 func run() error {
 	return &MyError{
 		time.Now(),
@@ -50,7 +57,57 @@ func run() error {
 	}
 }
 
+func Sqrt(f float64) (float64, error) {
+	if f < 0 {
+		return f, ErrNegativeSqrt(f)
+	}
+	return 0, nil
+}
+
+// Web server
+type Hello struct {}
+
+func (h Hello) ServeHTTP(
+	w http.ResponseWriter,
+	r *http.Request) {
+	fmt.Fprint(w, "Hello!")	
+}
+
+// goroutine
+func say(s string) {
+	for i := 0; i < 2; i++ {
+		time.Sleep(10 * time.Millisecond)
+		fmt.Println(s)
+	}
+}
+
+// channel
+func sum(a []int, c chan int) {
+	sum := 0
+	for _, v := range a {
+		sum += v
+	}
+	c <- sum
+}
+
+// range and close
+func fibonacci(n int, c chan int) {
+	x, y := 0, 1
+	for i := 0; i < n; i++ {
+		c <- x
+		x, y = y, x + y
+	}
+	close(c)
+}
+
+// defer: The statements after defer will be invoked before the func exit.
+func foo() {
+	defer fmt.Println("world")
+	fmt.Println("Hello")
+}
+
 func main() {
+/*
 	fmt.Printf("Hello world...\n")
 	fmt.Println(math.Pi)
 	fmt.Println(add(4, 5))
@@ -133,6 +190,45 @@ func main() {
 	// Errors
 	if err := run(); err != nil {
 		fmt.Println(err)
+	}
+	fmt.Println(Sqrt(2))
+	fmt.Println(Sqrt(-2))
+	//var h Hello
+	//http.ListenAndServe("localhost:4000", h)())
+*/
+	// goroutine
+	go say("world")
+	say("Hello")
+	// channel
+	a := []int{7, 2, 8, -9, 4, 0}
+	c := make(chan int)
+	go sum(a[:len(a) / 2], c)
+	go sum(a[len(a) / 2:], c)
+	x, y := <-c, <-c
+	
+	fmt.Println(x, y , x + y)
+	// Buffered channel
+	d := make(chan int, 2)
+	fmt.Println(d)
+	d <- 1
+	d <- 2
+	fmt.Println(<-d)
+	fmt.Println(<-d)
+	
+	e := make(chan int, 10)
+	fmt.Println(cap(e))
+	go fibonacci(cap(e), e)
+	for i := range e {
+		fmt.Println(i)
+	}
+
+	// map
+	m := make(map[string]string)
+	m["name"] = "Li Boshi"
+	fmt.Println(m["name"])
+	foo()
+	for i := 0; i < 5; i++ {
+		defer fmt.Println(i)
 	}
 }
 
