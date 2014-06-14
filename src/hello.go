@@ -5,7 +5,7 @@ import (
 //	"math"
 //	"runtime"
 	"time"
-//	"os/exec"
+	"os/exec"
 	"net/http"
 )
 
@@ -301,5 +301,10 @@ func main() {
 		ch <- i
 	}
 	quit <- 0
+	cmd := exec.Command("ls", "-l")
+	err := cmd.Run()
+	buf, err := cmd.Output()
+	fmt.Println(buf)
+	fmt.Println(err)
 }
 
