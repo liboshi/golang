@@ -5,7 +5,7 @@ import (
 //	"math"
 //	"runtime"
 	"time"
-//	"os"
+	"os/exec"
 	"net/http"
 )
 
@@ -81,6 +81,14 @@ func say(s string) {
 	}
 }
 
+var ch chan int
+
+func ready(w string, sec int) {
+	time.Sleep(time.Duration(sec) * time.Second)
+	fmt.Println(w, "is ready")
+	ch <- 1
+}
+
 // channel
 func sum(a []int, c chan int) {
 	sum := 0
@@ -104,6 +112,13 @@ func fibonacci(n int, c chan int) {
 func foo() {
 	defer fmt.Println("world")
 	fmt.Println("Hello")
+}
+
+func f() (ret int) {
+	defer func() {
+		ret++
+	}()
+	return 0
 }
 
 func main() {
@@ -195,7 +210,7 @@ func main() {
 	fmt.Println(Sqrt(-2))
 	//var h Hello
 	//http.ListenAndServe("localhost:4000", h)())
-*/
+
 	// goroutine
 	go say("world")
 	say("Hello")
@@ -230,5 +245,20 @@ func main() {
 	for i := 0; i < 5; i++ {
 		defer fmt.Println(i)
 	}
+
+	g := func() {
+		fmt.Println("Here")
+	}
+	g()
+
+	ch := make(chan int)
+	go ready("Tea", 2)
+	go ready("Coffee", 1)
+	fmt.Println("I am waiting")
+	<- ch
+	<- ch
+*/
+	cmd := exec.Command("ls", "-l")
+	cmd.Run()
 }
 
