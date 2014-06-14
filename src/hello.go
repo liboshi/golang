@@ -121,6 +121,19 @@ func f() (ret int) {
 	return 0
 }
 
+func fib(c, quit chan int) {
+	x, y := 0, 1
+	for {
+		select {
+			case c <- x:
+				x, y = y, x + y
+			case <-quit:
+				fmt.Println("Quit...")
+				return
+		}
+	}
+}
+
 func main() {
 /*
 	fmt.Printf("Hello world...\n")
@@ -260,5 +273,14 @@ func main() {
 */
 	cmd := exec.Command("ls", "-l")
 	cmd.Run()
+	c := make(chan int)
+	quit := make(chan int)
+	go func () {
+		for i := 0; i < 10; i++ {
+			fmt.Println(<-c)
+		}
+		quit <- 0
+	}()
+	fib(c, quit)
 }
 
