@@ -5,7 +5,7 @@ import (
 //	"math"
 //	"runtime"
 	"time"
-	"os/exec"
+//	"os/exec"
 	"net/http"
 )
 
@@ -96,6 +96,17 @@ func sum(a []int, c chan int) {
 		sum += v
 	}
 	c <- sum
+}
+
+func shower(c, quit chan int) {
+	for {
+		select {
+			case j := <-c:
+				fmt.Println(j)
+			case <- quit:
+				break
+		}
+	}
 }
 
 // range and close
@@ -270,7 +281,7 @@ func main() {
 	fmt.Println("I am waiting")
 	<- ch
 	<- ch
-*/
+
 	cmd := exec.Command("ls", "-l")
 	cmd.Run()
 	c := make(chan int)
@@ -282,5 +293,13 @@ func main() {
 		quit <- 0
 	}()
 	fib(c, quit)
+*/
+	ch := make(chan int)
+	quit := make(chan int)
+	go shower(ch, quit)
+	for i := 0; i < 10; i++ {
+		ch <- i
+	}
+	quit <- 0
 }
 
