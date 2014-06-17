@@ -7,6 +7,7 @@ import (
 	"time"
 	"os/exec"
 	"net/http"
+	"bouli"
 )
 
 var i, j int = 1, 2
@@ -143,6 +144,10 @@ func fib(c, quit chan int) {
 				return
 		}
 	}
+}
+
+func test() {
+    fmt.Println("Method: test()")
 }
 
 func main() {
@@ -306,5 +311,8 @@ func main() {
 	buf, err := cmd.Output()
 	fmt.Println(buf)
 	fmt.Println(err)
+	bouli.SayHello()
+	bouli.SayHello()
+	bouli.SayHello()
 }
 
