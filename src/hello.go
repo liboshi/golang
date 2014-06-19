@@ -5,9 +5,9 @@ import (
 //	"math"
 //	"runtime"
 	"time"
-	"os/exec"
+//	"os/exec"
 	"net/http"
-	"bouli"
+//	"bouli"
 )
 
 var i, j int = 1, 2
@@ -105,6 +105,7 @@ func shower(c, quit chan int) {
 			case j := <-c:
 				fmt.Println(j)
 			case <- quit:
+				fmt.Println("Quit---")
 				break
 		}
 	}
@@ -123,7 +124,9 @@ func fibonacci(n int, c chan int) {
 // defer: The statements after defer will be invoked before the func exit.
 func foo() {
 	defer fmt.Println("world")
-	fmt.Println("Hello")
+	fmt.Println("Hello 0")
+	fmt.Println("Hello 1")
+	fmt.Println("Hello 2")
 }
 
 func f() (ret int) {
@@ -298,7 +301,7 @@ func main() {
 		quit <- 0
 	}()
 	fib(c, quit)
-*/
+
 	ch := make(chan int)
 	quit := make(chan int)
 	go shower(ch, quit)
@@ -314,5 +317,6 @@ func main() {
 	bouli.SayHello()
 	bouli.SayHello()
 	bouli.SayHello()
+*/
 }
 
