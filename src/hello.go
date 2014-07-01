@@ -1,20 +1,23 @@
-package main 
+package main
 
 import (
 	"fmt"
-//	"math"
-//	"runtime"
+	//	"math"
+	//	"runtime"
 	"time"
-//	"os/exec"
+	//	"os/exec"
 	"net/http"
-//	"bouli"
+	//	"bouli"
+	"flag"
+	"os"
 )
 
 var i, j int = 1, 2
 var c, python, ruby bool = true, true, true
+
 type Person struct {
 	Name string
-	Age int
+	Age  int
 }
 
 type Writer interface {
@@ -66,12 +69,12 @@ func Sqrt(f float64) (float64, error) {
 }
 
 // Web server
-type Hello struct {}
+type Hello struct{}
 
 func (h Hello) ServeHTTP(
 	w http.ResponseWriter,
 	r *http.Request) {
-	fmt.Fprint(w, "Hello!")	
+	fmt.Fprint(w, "Hello!")
 }
 
 // goroutine
@@ -102,11 +105,11 @@ func sum(a []int, c chan int) {
 func shower(c, quit chan int) {
 	for {
 		select {
-			case j := <-c:
-				fmt.Println(j)
-			case <- quit:
-				fmt.Println("Quit---")
-				break
+		case j := <-c:
+			fmt.Println(j)
+		case <-quit:
+			fmt.Println("Quit---")
+			break
 		}
 	}
 }
@@ -116,7 +119,7 @@ func fibonacci(n int, c chan int) {
 	x, y := 0, 1
 	for i := 0; i < n; i++ {
 		c <- x
-		x, y = y, x + y
+		x, y = y, x+y
 	}
 	close(c)
 }
@@ -140,183 +143,197 @@ func fib(c, quit chan int) {
 	x, y := 0, 1
 	for {
 		select {
-			case c <- x:
-				x, y = y, x + y
-			case <-quit:
-				fmt.Println("Quit...")
-				return
+		case c <- x:
+			x, y = y, x+y
+		case <-quit:
+			fmt.Println("Quit...")
+			return
 		}
 	}
 }
 
 func test() {
-    fmt.Println("Method: test()")
+	fmt.Println("Method: test()")
+}
+
+func ParseArgs() {
+	if len(os.Args) <= 1 {
+		fmt.Println("Arguments number is not enough...")
+		os.Exit(1)
+	}
+	var (
+		help = flag.String("h", "", "Help documentation...")
+		user = flag.String("u", "Username", "User name...")
+	)
+	flag.Parse()
+	fmt.Println("Help:", *help)
+	fmt.Println("Username:", *user)
 }
 
 func main() {
-/*
-	fmt.Printf("Hello world...\n")
-	fmt.Println(math.Pi)
-	fmt.Println(add(4, 5))
-	a, b := swap("world", "Hello")
-	fmt.Println(a, b)
-	fmt.Println(split(17))
-	fmt.Println(i, j, c, python, ruby)
-	// For statement
-	for i := 1; i < 10; i++ {
-		fmt.Println(i)
-	}
-	// While implementation in Golang
-	sum := 1
-	for sum < 100 {
-		sum += sum
-	}
-	fmt.Println(sum)
-	// If...else... statement
-	if sum > 128 {
-		fmt.Println("=====")
-	} else {
-		fmt.Println("-----")
-	}
-	// Switch statement
-	switch os := runtime.GOOS; os {
-		case "linux":
-			fmt.Println("Linux")
-		case "Windows":
-			fmt.Println("Windows")
-		default:
-			fmt.Printf("%s\n", os)
-	}
-	//
-	fmt.Println(time.Now().Weekday())
-	today := time.Now().Weekday()
-	switch time.Saturday {
-		case today + 0:
-			fmt.Println("Today")
-		case today + 1:
-			fmt.Println("Tomorrow")
-		case today + 2:
-			fmt.Println("In two days")
-		default:
-			fmt.Println("Too far away.")
-	}
-	//
-	t := time.Now()
-	switch {
-		case t.Hour() < 12:
-			fmt.Println("Good morning")
-		case t.Hour() < 17:
-			fmt.Println("Good afternoon")
-		default:
-			fmt.Println("Good evening")
-	}
-	// Stucture
-	fmt.Println(Person{"Li Boshi", 28})
-	p := Person{"Li Boshi", 28}
-	fmt.Println(p.Name)
-	fmt.Println(p.Age)
-	// Pointer
-	p1 := &p
-	p1.Age = 27
-	fmt.Println(p)
-	// Array
-	var m [2]string
-	m[0] = "Hello"
-	m[1] = "world"
-	fmt.Println(m[0], m[1])
-	// Slice
-	s := []int{1, 2, 3, 4, 5, 6, 7}
-	fmt.Println("s ==", s)
-	for i := 0; i < len(s); i++ {
-		fmt.Printf("s[%d] == %d ", i, s[i])
-	}
-	// Interface
-	var w Writer
-	w = os.Stdout
-	fmt.Fprintf(w, "\nHello world.\n")
-	// Errors
-	if err := run(); err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(Sqrt(2))
-	fmt.Println(Sqrt(-2))
-	//var h Hello
-	//http.ListenAndServe("localhost:4000", h)())
+	/*
+		fmt.Printf("Hello world...\n")
+		fmt.Println(math.Pi)
+		fmt.Println(add(4, 5))
+		a, b := swap("world", "Hello")
+		fmt.Println(a, b)
+		fmt.Println(split(17))
+		fmt.Println(i, j, c, python, ruby)
+		// For statement
+		for i := 1; i < 10; i++ {
+			fmt.Println(i)
+		}
+		// While implementation in Golang
+		sum := 1
+		for sum < 100 {
+			sum += sum
+		}
+		fmt.Println(sum)
+		// If...else... statement
+		if sum > 128 {
+			fmt.Println("=====")
+		} else {
+			fmt.Println("-----")
+		}
+		// Switch statement
+		switch os := runtime.GOOS; os {
+			case "linux":
+				fmt.Println("Linux")
+			case "Windows":
+				fmt.Println("Windows")
+			default:
+				fmt.Printf("%s\n", os)
+		}
+		//
+		fmt.Println(time.Now().Weekday())
+		today := time.Now().Weekday()
+		switch time.Saturday {
+			case today + 0:
+				fmt.Println("Today")
+			case today + 1:
+				fmt.Println("Tomorrow")
+			case today + 2:
+				fmt.Println("In two days")
+			default:
+				fmt.Println("Too far away.")
+		}
+		//
+		t := time.Now()
+		switch {
+			case t.Hour() < 12:
+				fmt.Println("Good morning")
+			case t.Hour() < 17:
+				fmt.Println("Good afternoon")
+			default:
+				fmt.Println("Good evening")
+		}
+		// Stucture
+		fmt.Println(Person{"Li Boshi", 28})
+		p := Person{"Li Boshi", 28}
+		fmt.Println(p.Name)
+		fmt.Println(p.Age)
+		// Pointer
+		p1 := &p
+		p1.Age = 27
+		fmt.Println(p)
+		// Array
+		var m [2]string
+		m[0] = "Hello"
+		m[1] = "world"
+		fmt.Println(m[0], m[1])
+		// Slice
+		s := []int{1, 2, 3, 4, 5, 6, 7}
+		fmt.Println("s ==", s)
+		for i := 0; i < len(s); i++ {
+			fmt.Printf("s[%d] == %d ", i, s[i])
+		}
+		// Interface
+		var w Writer
+		w = os.Stdout
+		fmt.Fprintf(w, "\nHello world.\n")
+		// Errors
+		if err := run(); err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(Sqrt(2))
+		fmt.Println(Sqrt(-2))
+		//var h Hello
+		//http.ListenAndServe("localhost:4000", h)())
 
-	// goroutine
-	go say("world")
-	say("Hello")
-	// channel
-	a := []int{7, 2, 8, -9, 4, 0}
-	c := make(chan int)
-	go sum(a[:len(a) / 2], c)
-	go sum(a[len(a) / 2:], c)
-	x, y := <-c, <-c
-	
-	fmt.Println(x, y , x + y)
-	// Buffered channel
-	d := make(chan int, 2)
-	fmt.Println(d)
-	d <- 1
-	d <- 2
-	fmt.Println(<-d)
-	fmt.Println(<-d)
-	
-	e := make(chan int, 10)
-	fmt.Println(cap(e))
-	go fibonacci(cap(e), e)
-	for i := range e {
-		fmt.Println(i)
-	}
+		// goroutine
+		go say("world")
+		say("Hello")
+		// channel
+		a := []int{7, 2, 8, -9, 4, 0}
+		c := make(chan int)
+		go sum(a[:len(a) / 2], c)
+		go sum(a[len(a) / 2:], c)
+		x, y := <-c, <-c
 
-	// map
-	m := make(map[string]string)
-	m["name"] = "Li Boshi"
-	fmt.Println(m["name"])
-	foo()
-	for i := 0; i < 5; i++ {
-		defer fmt.Println(i)
-	}
+		fmt.Println(x, y , x + y)
+		// Buffered channel
+		d := make(chan int, 2)
+		fmt.Println(d)
+		d <- 1
+		d <- 2
+		fmt.Println(<-d)
+		fmt.Println(<-d)
 
-	g := func() {
-		fmt.Println("Here")
-	}
-	g()
+		e := make(chan int, 10)
+		fmt.Println(cap(e))
+		go fibonacci(cap(e), e)
+		for i := range e {
+			fmt.Println(i)
+		}
 
-	ch := make(chan int)
-	go ready("Tea", 2)
-	go ready("Coffee", 1)
-	fmt.Println("I am waiting")
-	<- ch
-	<- ch
+		// map
+		m := make(map[string]string)
+		m["name"] = "Li Boshi"
+		fmt.Println(m["name"])
+		foo()
+		for i := 0; i < 5; i++ {
+			defer fmt.Println(i)
+		}
 
-	cmd := exec.Command("ls", "-l")
-	cmd.Run()
-	c := make(chan int)
-	quit := make(chan int)
-	go func () {
+		g := func() {
+			fmt.Println("Here")
+		}
+		g()
+
+		ch := make(chan int)
+		go ready("Tea", 2)
+		go ready("Coffee", 1)
+		fmt.Println("I am waiting")
+		<- ch
+		<- ch
+
+		cmd := exec.Command("ls", "-l")
+		cmd.Run()
+		c := make(chan int)
+		quit := make(chan int)
+		go func () {
+			for i := 0; i < 10; i++ {
+				fmt.Println(<-c)
+			}
+			quit <- 0
+		}()
+		fib(c, quit)
+
+		ch := make(chan int)
+		quit := make(chan int)
+		go shower(ch, quit)
 		for i := 0; i < 10; i++ {
-			fmt.Println(<-c)
+			ch <- i
 		}
 		quit <- 0
-	}()
-	fib(c, quit)
-
-	ch := make(chan int)
-	quit := make(chan int)
-	go shower(ch, quit)
-	for i := 0; i < 10; i++ {
-		ch <- i
-	}
-	quit <- 0
-	cmd := exec.Command("ls", "-l")
-	err := cmd.Run()
-	buf, err := cmd.Output()
-	fmt.Println(buf)
-	fmt.Println(err)
-	bouli.SayHello()
-	bouli.SayHello()
-	bouli.SayHello()
-*/
+		cmd := exec.Command("ls", "-l")
+		err := cmd.Run()
+		buf, err := cmd.Output()
+		fmt.Println(buf)
+		fmt.Println(err)
+		bouli.SayHello()
+		bouli.SayHello()
+		bouli.SayHello()
+	*/
+	ParseArgs()
 }
-
