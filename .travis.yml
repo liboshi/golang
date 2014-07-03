@@ -1,0 +1,12 @@
+# travis CI configuration
+
+language: go
+go: 1.3
+
+install: true
+
+before_script:
+        - env | sort
+
+script:
+        - echo "Hello Travis CI..."
