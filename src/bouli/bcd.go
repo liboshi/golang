@@ -26,12 +26,12 @@ func (b *Boush) SayHello() {
 
 func shower(c chan int, quit chan bool) {
   for {
-      select {
-          case j := <-c:
-            fmt.Println(j)
-          case <-quit:
-            break
-      }
+    select {
+      case j := <-c:
+        fmt.Println(j)
+      case <-quit:
+        break
+    }
   }
 }
 
