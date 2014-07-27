@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"math"
+	"os"
+	"os/exec"
 )
 
 type MyFloat float64
