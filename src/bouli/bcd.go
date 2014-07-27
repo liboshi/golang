@@ -4,7 +4,6 @@ import (
   "fmt"
   "time"
   "os"
-  "flag"
 )
 
 var c chan int
@@ -46,6 +45,4 @@ func main() {
       }
       os.Stdout.Write(buf[:n])
   }
-  dnssec := flag.Bool("dnssec", false, "Request DNSSEC records.")
-  flag.Parse()
 }
