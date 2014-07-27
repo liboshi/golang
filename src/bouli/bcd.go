@@ -3,6 +3,8 @@ package main
 import (
      "fmt"
      "time"
+     "os"
+     "flag"
 )
 
 var c chan int
@@ -22,13 +24,29 @@ func (b *Boush) SayHello() {
     fmt.Println("Hello, This is", b.name, ". I am", b.age)
 }
 
+func shower(c chan int, quit chan bool) {
+    for {
+        select {
+            case j := <-c:
+                fmt.Println(j)
+            case <-quit:
+                break
+        }
+    }
+}
+
 func main() {
-    c = make(chan int)
-    go ready("Tea", 2)
-    go ready("Coffee", 1)
-    fmt.Println("I am waiting, but not too long...")
-    <- c
-    <- c
-    b := &Boush{"Li Bohsi", 28}
-    b.SayHello()
+    buf := make([]byte, 256)
+    f, _ := os.Open("/etc/passwd")
+    defer f.Close()
+    for {
+        n, _ := f.Read(buf)
+        if n == 0 {
+            break
+        }
+        os.Stdout.Write(buf[:n])
+    }
+    dnssec := flag.Bool("dnssec", false, "Request DNSSEC records.")
+    flag.Parse()
+    fmt.Println(dnssec)
 }
