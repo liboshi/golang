@@ -39,10 +39,23 @@ func shower(c chan int, quit chan bool) {
 	}
 }
 
+func fibonacci(c, quit chan int) {
+	x, y := 0, 1
+	for {
+		select {
+		case c <- x:
+			x, y = y, x+y
+		case <-quit:
+			fmt.Println("Quit...")
+			return
+		}
+	}
+}
+
 func main() {
 	/*
-			go say("world")
-			say("Hello")
+		go say("world")
+		say("Hello")
 		a := []int{1, 2, 3, 4, 5, 6}
 		c := make(chan int)
 		go sum(a[:len(a)/2], c)
@@ -50,12 +63,21 @@ func main() {
 		x, y := <-c, <-c
 
 		fmt.Println(x, y, x+y)
+		c := make(chan int, 2)
+		c <- 1
+		c <- 2
+		fmt.Println(<-c)
+		c <- 3
+		fmt.Println(<-c)
+		fmt.Println(<-c)
 	*/
-	c := make(chan int, 2)
-	c <- 1
-	c <- 2
-	fmt.Println(<-c)
-	c <- 3
-	fmt.Println(<-c)
-	fmt.Println(<-c)
+	c := make(chan int)
+	quit := make(chan int)
+	go func() {
+		for i := 0; i < 10; i++ {
+			fmt.Println(<-c)
+		}
+		quit <- 0
+	}()
+	fibonacci(c, quit)
 }
