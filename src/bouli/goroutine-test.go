@@ -7,11 +7,6 @@ import (
 
 var c chan int
 
-func main() {
-	go say("world")
-	say("Hello")
-}
-
 func ready(w string, sec int) {
 	time.Sleep(time.Duration(sec) * time.Second)
 	fmt.Println(w, "is ready")
@@ -25,6 +20,14 @@ func say(s string) {
 	}
 }
 
+func sum(a []int, c chan int) {
+	sum := 0
+	for _, v := range a {
+		sum += v
+	}
+	c <- sum
+}
+
 func shower(c chan int, quit chan bool) {
 	for {
 		select {
@@ -34,4 +37,25 @@ func shower(c chan int, quit chan bool) {
 			break
 		}
 	}
+}
+
+func main() {
+	/*
+			go say("world")
+			say("Hello")
+		a := []int{1, 2, 3, 4, 5, 6}
+		c := make(chan int)
+		go sum(a[:len(a)/2], c)
+		go sum(a[len(a)/2:], c)
+		x, y := <-c, <-c
+
+		fmt.Println(x, y, x+y)
+	*/
+	c := make(chan int, 2)
+	c <- 1
+	c <- 2
+	fmt.Println(<-c)
+	c <- 3
+	fmt.Println(<-c)
+	fmt.Println(<-c)
 }
