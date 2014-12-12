@@ -10,6 +10,11 @@ func main() {
 	fmt.Println("p[1: 4] ==", p[1:4])
 	fmt.Println("p[:3] ==", p[:3])
 	fmt.Println("p[4:] ==,", p[4:])
+	q := p[:]
+	append(q, 17)
+	fmt.Println(q)
+	fmt.Println("============================================")
+
 	a := make([]int, 5)
 	fmt.Println("a ==", a)
 	b := make([]int, 0, 5)
