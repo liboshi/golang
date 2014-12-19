@@ -1,4 +1,4 @@
-package bouli
+package main
 
 import (
 	"fmt"
