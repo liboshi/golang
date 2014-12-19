@@ -6,6 +6,10 @@ import (
 
 type USB interface {
 	Name() string
+	Connector
+}
+
+type Connector interface {
 	Connect()
 }
 
@@ -21,10 +25,18 @@ func (p PhoneConnecter) Connect() {
 	fmt.Println("Connect:", p.name)
 }
 
-func Disconnect(usb USB) {
-	if p, ok := usb.(PhoneConnecter); ok {
-		fmt.Println("Disconnect:", p.name)
-		return
+func Disconnect(usb interface{}) {
+	/*
+		if p, ok := usb.(PhoneConnecter); ok {
+			fmt.Println("Disconnect:", p.name)
+			return
+		}
+	*/
+	switch v := usb.(type) {
+	case PhoneConnecter:
+		fmt.Println("Disconnect:", v.name)
+	default:
+		fmt.Println("Unknown device")
 	}
 }
 
