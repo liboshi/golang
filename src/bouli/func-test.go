@@ -35,4 +35,5 @@ func testB(a, b, c int) int {
 
 func testC(a ...int) {
 	fmt.Println(a)
+	fmt.Println(a[0])
 }
