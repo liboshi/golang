@@ -3,7 +3,9 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"log"
+	"net/http"
 	"os"
 	"os/exec"
 )
@@ -33,6 +35,18 @@ func upgradeGolang(goSrcFile string) {
 	if err != nil {
 		fmt.Println("Install Golang failed...")
 	}
+}
+
+func fetchGolangInstaller(version string) {
+	goDownloadUrl := "https://storage.googleapis.com/golang/go1.4.darwin-amd64-osx10.8.tar.gz"
+	resp, err := http.Get(goDownloadUrl)
+	if err != nil {
+		fmt.Println("Download golang installer failed...")
+	}
+	// Close the handler
+	defer resp.Body.close()
+	// Download...
+	n, err := io.Copy(out, resp.Body)
 }
 
 func main() {
