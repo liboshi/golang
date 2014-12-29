@@ -61,40 +61,14 @@ func fibonaccii(n int, c chan int) {
 	close(c)
 }
 
+func bufferChannels() {
+	c := make(chan int, 2)
+	c <- 1
+	c <- 2
+	fmt.Println(<-c)
+	fmt.Println(<-c)
+}
+
 func main() {
-	/*
-				go say("world")
-				say("Hello")
-				a := []int{1, 2, 3, 4, 5, 6}
-				c := make(chan int)
-				go sum(a[:len(a)/2], c)
-				go sum(a[len(a)/2:], c)
-				x, y := <-c, <-c
-
-				fmt.Println(x, y, x+y)
-				c := make(chan int, 2)
-				c <- 1
-				c <- 2
-				fmt.Println(<-c)
-				c <- 3
-				fmt.Println(<-c)
-				fmt.Println(<-c)
-			c := make(chan int)
-			quit := make(chan int)
-			go func() {
-				for i := 0; i < 10; i++ {
-					fmt.Println(<-c)
-				}
-				quit <- 0
-			}()
-			fibonacci(c, quit)
-		c := make(chan int, 10)
-		go fibonaccii(cap(c), c)
-		for i := range c {
-			fmt.Println(i)
-		}
-	*/
-
-	defer fmt.Println("World")
-	fmt.Println("Hello")
+	bufferChannels()
 }
