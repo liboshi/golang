@@ -8,7 +8,7 @@ import (
 	"os/exec"
 )
 
-func brew_install(pkg string, args ...int) {
+func brewInstall(pkg string, args ...int) {
 	cmd := exec.Command("brew", "list", pkg, "--versions")
 	var out bytes.Buffer
 	cmd.Stdout = &out
@@ -28,7 +28,7 @@ func brew_install(pkg string, args ...int) {
 	}
 }
 
-func install_github_bundle(user, pkg string) {
+func installGithubBundle(user, pkg string) {
 	dir := "~/.vim/bundle/" + pkg
 	fmt.Println(dir)
 	if _, err := os.Stat(dir); err != nil {
@@ -45,6 +45,15 @@ func install_github_bundle(user, pkg string) {
 	}
 }
 
+func updateOrInstallBrew() {
+	fmt.Println("Update or install brew")
+	cmd := exec.Command("which", "brew > /dev/null", "||", "ruby -e", "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)")
+	err := cmd.Run()
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
 func main() {
-	install_github_bundle("boush", "jedi-vim")
+	installGithubBundle("boush", "jedi-vim")
 }
