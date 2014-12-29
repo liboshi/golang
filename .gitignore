@@ -7,6 +7,9 @@
 _obj
 _test
 bin
+src/code.google.com
+src/github.com
+src/golang.org
 
 # Architecture specific extensions/prefixes
 *.[568vq]
