@@ -9,4 +9,4 @@ before_script:
         - env | sort
 
 script:
-        - echo "Hello Travis CI..."
+        - go build oshi
