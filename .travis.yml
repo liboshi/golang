@@ -9,4 +9,4 @@ before_script:
         - env | sort
 
 script:
-        - go build oshi
+       - go build github.com/liboshi/golang/src/oshi
