@@ -55,5 +55,5 @@ func updateOrInstallBrew() {
 }
 
 func main() {
-	installGithubBundle("boush", "jedi-vim")
+	updateOrInstallBrew()
 }
