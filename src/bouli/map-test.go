@@ -28,4 +28,8 @@ func main() {
 		m2[v] = k
 	}
 	fmt.Println(m2)
+
+	m3 := make(map[int]map[int]string)
+	m3[1] = map[int]string{1: "a"}
+	fmt.Println(m3[1][1])
 }
