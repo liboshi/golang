@@ -8,9 +8,20 @@ type A struct {
 	Name string
 }
 
+type B struct {
+	Name string
+}
+
+type int_ int
+
 func (a *A) Print() {
 	a.Name = "Li Boshi"
 	fmt.Println("A")
+}
+
+func (b *B) Print() {
+	b.Name = "Li Boshi"
+	fmt.Println("B")
 }
 
 func (a *A) SayHello(name string) {
@@ -18,10 +29,17 @@ func (a *A) SayHello(name string) {
 	fmt.Printf("Hello %s\n", name)
 }
 
+func (a *int_) Print() {
+	fmt.Println("int_")
+}
+
+func (a *int_) Increase(num int) {
+	*a += int_(num)
+	fmt.Println(*a)
+}
+
 func main() {
-	a := &A{}
+	var a int_
 	a.Print()
-	a.SayHello("Boush")
-	fmt.Println(a.Name)
-	fmt.Println("访问控制权限由首字母大小写来控制，大写为全局，小写只能当前Package可以访问")
+	a.Increase(100)
 }
