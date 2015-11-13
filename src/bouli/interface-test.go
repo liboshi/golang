@@ -63,7 +63,20 @@ func Bind(p Person) {
 	fmt.Println(p.Get())
 }
 
-func main() {
+type Abser interface {
+	Abs() float64
+}
+
+type MyFloat float64
+
+func (f MyFloat) Abs() float64 {
+	if f < 0 {
+		return float64(-f)
+	}
+	return float64(f)
+}
+
+func maina() {
 	var a USB
 	a = PhoneConnecter{"PhoneConnecter"}
 	a.Connect()
@@ -72,4 +85,14 @@ func main() {
 	p = &Boush{"Boush"}
 	fmt.Println(p.Get())
 	Bind(p)
+}
+
+func mainb() {
+	var f Abser
+	f = MyFloat(15.00)
+	fmt.Println(f.Abs())
+}
+
+func main() {
+	mainb()
 }
