@@ -10,6 +10,8 @@ bin
 src/code.google.com
 src/github.com
 src/golang.org
+src/9fans.net
+src/gopkg.in
 
 # Architecture specific extensions/prefixes
 *.[568vq]
