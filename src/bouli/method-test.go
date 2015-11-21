@@ -38,8 +38,16 @@ func (a *int_) Increase(num int) {
 	fmt.Println(*a)
 }
 
+type C struct {
+	Name string
+	Age  int
+}
+
+func (c *C) SayHello() {
+	fmt.Println("Hello, I am C...")
+}
+
 func main() {
-	var a int_
-	a.Print()
-	a.Increase(100)
+	c := C{"Boush", 29}
+	c.SayHello()
 }
