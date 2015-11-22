@@ -88,7 +88,20 @@ type B struct {
 	Name string
 }
 
+type C struct {
+	Name string
+	Age  int
+	Sex  string
+}
+
 func main() {
-	a := A{Name: "A", B: B{Name: "B"}}
-	fmt.Println(a.Name, a.B.Name)
+	c := new(C)
+	c.Name = "Boush"
+	c.Age = 29
+	c.Sex = "Male"
+	fmt.Println("// Using 'new' will return a pointer...")
+	fmt.Println(c)
+
+	c1 := C{Name: "Boush", Age: 29, Sex: "Male"}
+	fmt.Println(c1)
 }
