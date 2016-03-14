@@ -44,4 +44,5 @@ func main() {
 	f = MyFloat(-math.Sqrt2)
 	a = f
 	fmt.Println(a.Abs())
+	fmt.Println("Bello vim-go")
 }

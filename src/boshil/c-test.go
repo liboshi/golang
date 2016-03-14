@@ -10,6 +10,7 @@ void say_hello() {
 */
 
 import "C"
+import "fmt"
 
 func main() {
 	C.say_hello()
