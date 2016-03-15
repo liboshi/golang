@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 )
 
 func main() {
@@ -16,4 +17,5 @@ func main() {
 	fmt.Println(*duration)
 	fmt.Println(flagvar1)
 	fmt.Println(execPath)
+	fmt.Println(os.Args[1:])
 }
