@@ -7,7 +7,6 @@ import (
 
 func SayHello() {
 	fmt.Println("Hello Guys.")
-	fmt.Println("Hello world.")
 }
 
 func regexpSample() {
