@@ -3,8 +3,6 @@ package main
 import (
 	"fmt"
 	"math"
-	"os"
-	"os/exec"
 )
 
 type MyFloat float64
@@ -35,6 +33,7 @@ func (v *Vertex) Abs() float64 {
 
 func main() {
 	fmt.Println("======")
+	fmt.Println("Plugin YouCompleteMe was installed successfully...")
 	f := MyFloat(-1.23)
 	fmt.Println(f.Abs())
 	v := &Vertex{3, 4}
