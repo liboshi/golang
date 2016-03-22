@@ -12,6 +12,13 @@ import (
 var cpuprofile = flag.String("cpuprofile", "/Users/boshil/works/tmp/cpuprifle",
 	"Write cpu profile to file")
 
+func loop() {
+	for i := 0; i < 1000; i++ {
+		time.Sleep(1e7)
+		fmt.Println(".....")
+	}
+}
+
 func main() {
 	flag.Parse()
 	if *cpuprofile != "" {
@@ -20,10 +27,9 @@ func main() {
 			log.Fatal(err)
 		}
 		pprof.StartCPUProfile(f)
-		time.Sleep(30e9)
 
-		pprof.StopCPUProfile()
-		fmt.Println("Stop profilling after 30 seconds")
-		defer f.Close()
+		loop()
+		f.Close()
+		defer pprof.StopCPUProfile()
 	}
 }
