@@ -1,17 +1,34 @@
 package main
 
-type ReadWrite interface {
-	Read(b Buffer) bool
-	Write(b Buffer) bool
+import "fmt"
+
+type GetSetter interface {
+	Getter
+	Setter
 }
 
-type Lock interface {
-	Lock()
-	Unlock()
+type Getter interface {
+	Get() int
 }
 
-type File interface {
-	ReadWrite
-	Write
-	Close()
+type Setter interface {
+	Set(v int)
+}
+
+type Sample struct {
+	value int
+}
+
+func (s *Sample) Set(v int) {
+	s.value = v
+}
+
+func (s *Sample) Get() int {
+	return s.value
+}
+
+func main() {
+	var sam GetSetter = new(Sample)
+	sam.Set(1)
+	fmt.Println(sam.Get())
 }
