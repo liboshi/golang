@@ -28,7 +28,14 @@ func (s *Sample) Get() int {
 }
 
 func main() {
-	var sam GetSetter = new(Sample)
+	var sam GetSetter
+	s1 := new(Sample)
+	sam = s1
+	if _, ok := sam.(*Sample); ok {
+		fmt.Println("True")
+	} else {
+		fmt.Println("False")
+	}
 	sam.Set(1)
 	fmt.Println(sam.Get())
 }
