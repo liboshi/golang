@@ -22,7 +22,7 @@ func main() {
 		Comment string `xml:",comment"`
 	}
 
-	f, err := os.OpenFile("test.xml", os.O_CREATE|os.O_WRONLY, 0600)
+	f, err := os.OpenFile("output.xml", os.O_CREATE|os.O_WRONLY, 0600)
 	if err != nil {
 		fmt.Println(err)
 	}
