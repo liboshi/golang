@@ -2,6 +2,7 @@ package soap
 
 import (
 	"encoding/xml"
+	"types"
 )
 
 type Envelope struct {
@@ -19,6 +20,10 @@ type Fault struct {
 	Code    string   `xml:"faultcode"`
 	String  string   `xml:"faultstring"`
 	Detail  struct {
-		Fault string `xml:",any,typeattr"`
+		Fault types.AnyType `xml:",any,typeattr"`
 	} `xml:"detail"`
+}
+
+func (f *Fault) VimFault() types.AnyType {
+	return f.Detail.Fault
 }
