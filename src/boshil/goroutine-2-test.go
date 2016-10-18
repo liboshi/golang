@@ -27,5 +27,6 @@ func main() {
 	go send_data(ch)
 	go get_data(ch)
 
-	time.Sleep(1e9)
+	time.Sleep(1 * time.Second)
+	fmt.Println()
 }
