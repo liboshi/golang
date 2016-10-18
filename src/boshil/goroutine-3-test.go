@@ -8,7 +8,7 @@ import (
 func main() {
 	c := make(chan string)
 	go func() {
-		time.Sleep(3 * 1e9)
+		time.Sleep(3 * time.Second)
 		x := <-c
 		fmt.Println("received", x)
 	}()
