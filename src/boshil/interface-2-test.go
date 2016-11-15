@@ -23,6 +23,10 @@ func (sq *Square) Perimeter() float32 {
 	return sq.side * 3
 }
 
+func (sq *Square) ShowSide() float32 {
+	return sq.side
+}
+
 func (sq *SquareA) Perimeter() float32 {
 	return sq.side * 4
 }
@@ -33,6 +37,7 @@ func main() {
 	sq2 := new(SquareA)
 	sq2.side = 4
 	areaIntf := sq1
+	fmt.Printf("The side of square is: %f\n", areaIntf.ShowSide())
 	fmt.Printf("The square has area: %f\n", areaIntf.Area())
 	fmt.Printf("The perimeter is: %f\n", areaIntf.Perimeter())
 	areaIntfA := sq2
