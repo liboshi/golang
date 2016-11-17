@@ -2,6 +2,11 @@ package main
 
 import "fmt"
 
+type TestStruct struct {
+	i int
+	s string
+}
+
 func main() {
 	i, j := 42, 2701
 
@@ -14,4 +19,7 @@ func main() {
 	p = &j
 	*p = *p
 	fmt.Println(j)
+
+	s := TestStruct{1, "A"}
+	fmt.Println(&s)
 }
