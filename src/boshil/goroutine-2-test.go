@@ -6,11 +6,10 @@ import (
 )
 
 func send_data(ch chan string) {
-	ch <- "Kevin"
-	ch <- "Frank"
-	ch <- "Vincent"
-	ch <- "Jacky"
-	ch <- "Evan"
+	names := []string{"Kevin", "Frank", "Vincent", "Jacky", "Evan"}
+	for _, name := range names {
+		ch <- name
+	}
 }
 
 func get_data(ch chan string) {
