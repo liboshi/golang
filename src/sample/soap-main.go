@@ -8,8 +8,8 @@ import (
 )
 
 func main() {
-	v := &soap.Envelope{}
-	v.Header = &soap.Header{}
+	v := &soap.SOAPEnvelope{}
+	v.Header = &soap.SOAPHeader{}
 	enc := xml.NewEncoder(os.Stdout)
 	enc.Indent("   ", "      ")
 	if err := enc.Encode(v); err != nil {
