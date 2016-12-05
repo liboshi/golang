@@ -6,7 +6,7 @@ import (
 )
 
 type Envelope struct {
-	XMLName xml.name `xml:"http://schemas.xmlsoap.org/soap/envelope/ Envelope"`
+	XMLName xml.Name `xml:"http://schemas.xmlsoap.org/soap/envelope/ Envelope"`
 	Header  *Header  `xml:",omitempty"`
 	Body    interface{}
 }
