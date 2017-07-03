@@ -1,0 +1,36 @@
+{  
+   "product":"horizonair",
+   "sp":"105",
+   "tenantid":"1001",
+   "timestamp":1478153808592,
+   "cmstenantid":"fy1edaju4cdsrznnrpbjhnmktdq",
+   "t":"f",
+   "pools":[  
+      {  
+         "poolid":"1008",
+         "poolname":"win7x642",
+         "poolcapacity":"1",
+         "vms":[  
+            "9811eba4-5ceb-4573-9495-dece36184995"
+         ]
+      },
+      {  
+         "poolid":"1003",
+         "poolname":"Win81-test123456789b",
+         "poolcapacity":"2",
+         "vms":[  
+            "560547a8-cfd7-4810-ba2f-e18852309953",
+            "4bcdb690-38a4-4a77-b981-a54503febdfa"
+         ]
+      },
+      { 
+         "poolid":"1008",
+         "poolname":"win7x642",
+         "poolcapacity":"2",
+         "vms":[  
+            "fanpan1",
+            "fanpan2"
+         ]
+      }
+   ]
+}

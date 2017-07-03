@@ -1,0 +1,93 @@
+{
+    "concurrency": [{
+        "path": "data[0].data.sample.s[0].p[6].v",
+        "type": "string",
+		"generator": "optional_data",
+        "formula": {			
+            "list": ["Mac","Windows","Linux"]
+        }
+    },{
+		"path": "data[0].data.client.n",
+		"type": "string",
+		"generator": "sequential_string_data",
+		"formula":{
+			"start": "0",
+			"initial": "xichen*",
+			"leastLength": "3",
+			"except":["1", "2", "4"]
+		}
+    },{
+		"path": "daas_vm_id",
+		"type": "string",
+		"generator": "sequential_string_data",
+		"formula":{
+			"start": "10",
+			"initial": "fanpan*",
+			"leastLength": "1",
+			"except":["12"]
+		}
+    }],
+    "metrics": [{
+        "path": "data[0].data.sample.metrics[0].dv",
+		"generator": "range_data",
+        "formula": {
+			"type": "double",
+			"max": "0.3",
+			"min": "0.1"
+        }
+    }, {
+        "path": "data[0].data.sample.time",
+        "type": "timestamp",
+		"generator": "timestamp_data",
+		"formula": {
+		}
+    },{
+		"path": "data[0].data.sample.metrics[2].dv",
+		"type": "double",
+		"generator": "fixed_data",
+		"formula":{
+			"value": "3456"		
+		}
+	},{
+        "generator": "random_switch_data",
+        "formula": {
+            "condition": [{
+                "type": "random",
+                "threshhold": "0.3"
+            }, {
+                "type": "random",
+                "threshhold": "0"
+            }],
+            "totalCondition": "2",
+            "subFormula": [{
+                "init": [{
+                    "path": "data[0].data.sample.metrics[2].dv",
+                    "generator": "timestamp",
+                    "value": ""
+                }],
+                "normal": [{
+                    "path": "data[0].data.sample.metrics[2].dv",
+                    "generator": "step",
+                    "type": "int",
+                    "value": "11"
+                }]
+            }, {
+                "init": [{
+                    "path": "data[0].data.sample.metrics[2].dv",
+                    "generator": "string",
+                    "value": "21"
+                }],
+                "normal": [{
+                    "path": "data[0].data.sample.metrics[2].dv",
+                    "generator": "step",
+                    "type": "int",
+                    "value": "21"
+                }]
+            }]
+        }
+    }],
+	"partitionKey": {
+		"type": "path",
+		"value": "tenantid"
+	}
+}

@@ -1,0 +1,372 @@
+{
+  "product": "HorizonAir",
+  "tenantid": "Tenant Id",
+  "daas_vm_id": "DaaS VM Id",
+  "data": [
+    {
+      "type": "eSample",
+      "data": {
+        "dataType": "eSample",
+        "client": {
+          "n": "fanpan_client_1",
+          "version": "6.4.0.4541725",
+          "deviceType": "DESKTOP"
+        },
+        "sample": {
+          "time": "1478601322000",
+          "metrics": [
+            {
+              "n": "blast_bw",
+              "dv": "22"
+            },
+            {
+              "n": "s_dur",
+              "dv": "0.6232449999999999"
+            },
+            {
+              "n": "blast_vdms_rtt_ms",
+              "dv": "1"
+            },
+            {
+              "n": "s_logon_timestamp",
+              "lv": "1484013899487"
+            },
+            {
+              "n": "c_int_ps",
+              "dv": "4259.00091412953"
+            },
+            {
+              "n": "c_pri_per",
+              "dv": "4.785851427194957"
+            },
+            {
+              "n": "c_pro_per",
+              "dv": "68.49423147655854"
+            },
+            {
+              "n": "c_usr_per",
+              "dv": "63.71572227050287"
+            },
+            {
+              "n": "d_que_len_avg",
+              "dv": "0.01109503805961936"
+            },
+            {
+              "n": "d_avg_s_per_tran",
+              "dv": "0.00167853548651597"
+            },
+            {
+              "n": "d_bps",
+              "dv": "48610.65766111402"
+            },
+            {
+              "n": "d_rbps",
+              "dv": "2734.776802313025"
+            },
+            {
+              "n": "d_rps",
+              "dv": "0.08345876471902543"
+            },
+            {
+              "n": "d_tran_ps",
+              "dv": "6.609934165746814"
+            },
+            {
+              "n": "d_wbps",
+              "dv": "45875.88085880099"
+            },
+            {
+              "n": "d_wps",
+              "dv": "6.526475401027788"
+            },
+            {
+              "n": "d_spiops",
+              "dv": "0.06676701177522033"
+            },
+            {
+              "n": "dmn_trust_rel",
+              "lv": "1"
+            },
+            {
+              "n": "fw_blast_ena",
+              "lv": "1"
+            },
+            {
+              "n": "fw_da_ena",
+              "lv": "1"
+            },
+            {
+              "n": "fw_pcoipsrv_ena",
+              "lv": "1"
+            },
+            {
+              "n": "fw_rdp_ena",
+              "lv": "1"
+            },
+            {
+              "n": "fw_viewfrwk_ena",
+              "lv": "1"
+            },
+            {
+              "n": "fw_view_rule_ena",
+              "dv": "1"
+            },
+            {
+              "n": "m_avail_mb",
+              "dv": "967"
+            },
+            {
+              "n": "m_cache_b",
+              "dv": "45502464"
+            },
+            {
+              "n": "m_comm_b",
+              "dv": "1477951488"
+            },
+            {
+              "n": "memory|committed_mbytes",
+              "dv": "1409.484375"
+            },
+            {
+              "n": "m_pa_out_ps",
+              "dv": "0"
+            },
+            {
+              "n": "m_pa_ps",
+              "dv": "0.6843618706960084"
+            },
+            {
+              "n": "m_com_b_inuse_per",
+              "dv": "52.44493926713594"
+            },
+            {
+              "n": "m_tran_fault_ps",
+              "dv": "548.8916038040863"
+            },
+            {
+              "n": "n_r_bps",
+              "dv": "25234.62473977697"
+            },
+            {
+              "n": "n_s_bps",
+              "dv": "34400.08918954244"
+            },
+            {
+              "n": "n_dhcp_ena",
+              "lv": "1"
+            },
+            {
+              "n": "n_host_ipv4",
+              "stringValue": "192.168.1.123"
+            },
+            {
+              "n": "n_port_ldap",
+              "dv": "0"
+            },
+            {
+              "n": "n_outque_len",
+              "dv": "0"
+            },
+            {
+              "n": "n_pack_outb_err",
+              "dv": "0"
+            },
+            {
+              "n": "n_pack_r_err",
+              "dv": "0"
+            },
+            {
+              "n": "n_pack_r_ps",
+              "dv": "131.6669279371133"
+            },
+            {
+              "n": "n_pack_s_ps",
+              "dv": "131.2995164182629"
+            },
+            {
+              "n": "n_port_22443",
+              "lv": "1"
+            },
+            {
+              "n": "n_port_32111",
+              "lv": "1"
+            },
+            {
+              "n": "n_port_3389",
+              "lv": "1"
+            },
+            {
+              "n": "network_interface|port_443",
+              "lv": "0"
+            },
+            {
+              "n": "n_port_t_4172",
+              "lv": "0"
+            },
+            {
+              "n": "n_port_u_4172",
+              "lv": "0"
+            },
+            {
+              "n": "pf_use_per",
+              "dv": "38.505859375"
+            },
+            {
+              "n": "pcoip_bw",
+              "dv": "0"
+            },
+            {
+              "n": "pwr_slphib_ena",
+              "lv": "1"
+            },
+            {
+              "n": "p_h_cnt",
+              "dv": "24556"
+            },
+            {
+              "n": "p_pafile_b",
+              "dv": "1013534720"
+            },
+            {
+              "n": "p_priv_b",
+              "dv": "1013534720"
+            },
+            {
+              "n": "p_wrkset",
+              "dv": "1268875264"
+            },
+            {
+              "n": "p_wrkset_mb",
+              "dv": "1210.09375"
+            },
+            {
+              "n": "rdp_ena",
+              "dv": "1"
+            },
+            {
+              "n": "srvc_daas_ag",
+              "lv": "1"
+            },
+            {
+              "n": "srvc_view_ag",
+              "lv": "1"
+            },
+            {
+              "n": "srvc_s_mgr",
+              "lv": "0"
+            },
+            {
+              "n": "srvc_vmw_blast",
+              "lv": "1"
+            },
+            {
+              "n": "srvc_vmw_tools",
+              "lv": "1"
+            },
+            {
+              "n": "srvc_win_fw",
+              "lv": "1"
+            },
+            {
+              "n": "s_da_logon_t",
+              "dv": "0"
+            },
+            {
+              "n": "s_disct_dur",
+              "dv": "0.019"
+            },
+            {
+              "n": "s_h_cnt",
+              "dv": "488"
+            },
+            {
+              "n": "s_prof_load_t",
+              "dv": "0"
+            },
+            {
+              "n": "s_rect_dur",
+              "dv": "0.08699999999999999"
+            },
+            {
+              "n": "s_shl_st_t",
+              "dv": "0"
+            },
+            {
+              "n": "session|thread_count",
+              "dv": "13"
+            },
+            {
+              "n": "prot",
+              "stringValue": "BLAST"
+            },
+            {
+              "n": "sys_ctx_sw_ps",
+              "dv": "5641.545426959017"
+            },
+            {
+              "n": "sys_f_dat_op_ps",
+              "dv": "109.5479745701928"
+            },
+            {
+              "n": "sys_proc",
+              "dv": "59"
+            },
+            {
+              "n": "sys_proc_que_len",
+              "dv": "2"
+            },
+            {
+              "n": "sys_sys_calls_ps",
+              "dv": "17300.40102314799"
+            },
+            {
+              "n": "sys_thd",
+              "dv": "876"
+            }
+          ],
+          "s": [
+            {
+              "id": "1",
+              "sid": "S-1-5-21-2353132219-1232147949-4292795186-1210",
+              "un": "test6",
+              "ud": "FALCON",
+              "isConnected": "true",
+              "p": [
+                {
+                  "n": "vc_br_dn",
+                  "v": "FALCON"
+                },
+                {
+                  "n": "vc_br_un",
+                  "v": "test6"
+                },
+                {
+                  "n": "vc_disp",
+                  "v": "1"
+                },
+                {
+                  "n": "vc_disp_topo",
+                  "v": "{1764,1012,0,0,32,1}"
+                },
+                {
+                  "n": "vc_lang",
+                  "v": "en"
+                },
+                {
+                  "n": "vc_prot",
+                  "v": "BLAST"
+                },
+                {
+                  "n": "vc_type",
+                  "v": "Linux"
+                }
+              ],
+              "metrics": "",
+              "remoteApps": ""
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

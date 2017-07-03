@@ -1,0 +1,18 @@
+{
+    "concurrency": [{
+		"path": "pools[0].vms",
+		"generator": "array_data",
+		"formula":{
+			"start": "12",
+			"initial": "xichen*",
+			"leastLength": "3",
+			"count": "30",
+			"except":["12", "21", "43"]
+		}
+	}],
+    "metrics": [],
+  	"partitionKey": {
+  		"type": "path",
+  		"value": "tenantid"
+  	}
+}

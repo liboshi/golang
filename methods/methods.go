@@ -5,6 +5,6 @@ import (
 )
 
 type GetCitiesByCountry struct {
-	XMLName     xml.Name `xml:"http://www.webservicex.net GetCitiesByCountry"`
+	XMLName     xml.Name `xml:"http://www.webserviceX.NET GetCitiesByCountry"`
 	CountryName string   `xml:"CountryName"`
 }

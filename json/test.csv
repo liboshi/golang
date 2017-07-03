@@ -1,0 +1,8 @@
+section,tenantid,poolid,path,type,generator,formula
+concurrency,"{2000,2001}","{00,01,02,03,04}",daas_vm_id,string,sequential_string_data,"{40,Ten2000Pool00VM*,4}"
+concurrency,"{2000,2001}","{00,01,02,03,04}",data[0].data.client.n,string,sequential_string_data,"{40,Ten2000Pool00VM*,4}"
+concurrency,"{2000,2001}","{00,01,02,03,04}",data[0].data.sample.s[0].p[1].v,string,sequential_string_data,"{40,Boshil00*,4}"
+concurrency,"{2000,2001}","{00,01,02,03,04}",data[0].data.sample.s[0].un,string,sequential_string_data,"{40,Boshil00*,4}"
+concurrency,"{2000,2001}","{00,01,02,03,04}",data[0].data.sample.s[0].p[6].v,double,iterative_data,"{iOS,Mac,htmlaccess,Android}"
+merics,"{2000,2001}","{00,01,02,03,04}",data[0].data.sample.time,timestamp,timestamp_data,
+merics,"{2000,2001}","{00,01,02,03,04}",data[0].data.sample.metrics[1].dv,double,sequential_data,"{0,0.016891}"
