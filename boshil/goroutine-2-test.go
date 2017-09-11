@@ -5,14 +5,14 @@ import (
 	"time"
 )
 
-func send_data(ch chan string) {
+func sendData(ch chan string) {
 	names := []string{"Kevin", "Frank", "Vincent", "Jacky", "Evan"}
 	for _, name := range names {
 		ch <- name
 	}
 }
 
-func get_data(ch chan string) {
+func getData(ch chan string) {
 	var input string
 	for {
 		input = <-ch
@@ -23,8 +23,8 @@ func get_data(ch chan string) {
 func main() {
 	ch := make(chan string)
 
-	go send_data(ch)
-	go get_data(ch)
+	go sendData(ch)
+	go getData(ch)
 
 	time.Sleep(1 * time.Second)
 	fmt.Println()
