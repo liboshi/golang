@@ -11,9 +11,9 @@ import (
 )
 
 const (
-	URLPREFIX    = "http://buildapi.eng.vmware.com"
-	BINURLPREFIX = "http://build-squid.eng.vmware.com/build/mts/release"
-	DLVURLPREFIX = "http://buildapi.eng.vmware.com/ob/deliverable/?build="
+	URLPREFIX    = ""
+	BINURLPREFIX = ""
+	DLVURLPREFIX = ""
 )
 
 func URLForLatestBuild(buildType, product, branch string) string {
